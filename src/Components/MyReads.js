@@ -1,29 +1,25 @@
 import React, { Component } from "react";
-import Header from "./Header";
 import BookShelf from "./BookShelf";
-import { getAll } from "../BooksAPI";
+import { Link } from "react-router-dom";
 
 class MyReads extends Component {
-  componentDidMount() {
-    try {
-      const books = getAll();
-      console.log(books);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   render() {
+    const { books, shelves } = this.props;
+    console.log(books, shelves);
     return (
       <div className="list-books">
-        <Header />
+        <div className="list-books-title">
+          <h1>MyReads</h1>
+        </div>
         <div className="list-books-content">
-          <BookShelf title="Currently Reading" />
+          {shelves.map((shelf) => {
+            return <BookShelf books={books} shelf={shelf} key={shelf.id} />;
+          })}
         </div>
         <div className="open-search">
-          <button onClick={() => this.setState({ showSearchPage: true })}>
-            Add a book
-          </button>
+          <Link to="/search">
+            <button>Add a book</button>
+          </Link>
         </div>
       </div>
     );
