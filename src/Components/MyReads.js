@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 class MyReads extends Component {
   render() {
-    const { books, shelves } = this.props;
+    const { books, shelves, onShelfChange } = this.props;
     console.log(books, shelves);
     return (
       <div className="list-books">
@@ -13,7 +13,14 @@ class MyReads extends Component {
         </div>
         <div className="list-books-content">
           {shelves.map((shelf) => {
-            return <BookShelf books={books} shelf={shelf} key={shelf.id} />;
+            return (
+              <BookShelf
+                key={shelf.id}
+                books={books}
+                shelf={shelf}
+                onShelfChange={onShelfChange}
+              />
+            );
           })}
         </div>
         <div className="open-search">
