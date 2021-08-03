@@ -4,9 +4,9 @@ import BookList from "./BookList";
 class BookShelf extends Component {
   render() {
     const { shelf, books, onShelfChange } = this.props;
-    console.log(shelf);
+    // console.log(shelf);
     const booksInShelf = books.filter((book) => book.shelf === shelf.id);
-    console.log(booksInShelf);
+    // console.log(booksInShelf);
     return (
       <div className="bookshelf">
         <h2 className="bookshelf-title">{shelf.title}</h2>

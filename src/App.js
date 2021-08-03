@@ -60,6 +60,7 @@ class BooksApp extends React.Component {
           </Route>
           <Route exact path="/search">
             <SearchBooks
+              mybooks={this.state.allBooks}
               books={this.state.searchBooks}
               onSearch={this.onSearch}
               onShelfChange={this.onShelfChange}

@@ -11,8 +11,19 @@ class SearchBooks extends Component {
     this.props.onSearch(event.target.value);
   };
   render() {
-    const { books, onShelfChange } = this.props;
+    const { books, mybooks, onShelfChange } = this.props;
     console.log(books);
+
+    const shelfUpdated = books.map((book) => {
+      mybooks.map((mybook) => {
+        if (book.id === mybook.id) {
+          book.shelf = mybook.shelf;
+        }
+        return mybook;
+      });
+      return book;
+    });
+    console.log(shelfUpdated);
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -31,12 +42,12 @@ class SearchBooks extends Component {
         <div className="search-books-results">
           <div className="bookshelf-books">
             <ol className="books-grid">
-              {books.map((book) => {
+              {shelfUpdated.map((book) => {
                 return (
                   <BookList
                     key={book.id}
                     book={book}
-                    shelf="none"
+                    shelf={book.shelf ? book.shelf : "none"}
                     onShelfChange={onShelfChange}
                   />
                 );

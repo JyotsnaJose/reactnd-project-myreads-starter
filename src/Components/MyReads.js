@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 class MyReads extends Component {
   render() {
     const { books, shelves, onShelfChange } = this.props;
-    console.log(books, shelves);
+    // console.log(books, shelves);
     return (
       <div className="list-books">
         <div className="list-books-title">
