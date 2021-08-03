@@ -34,6 +34,7 @@ export const update = (book, shelf) =>
     body: JSON.stringify({ shelf }),
   }).then((res) => res.json());
 
+// search for books
 export const search = (query) =>
   fetch(`${api}/search`, {
     method: "POST",
