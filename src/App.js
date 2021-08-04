@@ -9,6 +9,7 @@ class BooksApp extends React.Component {
   state = {
     allBooks: [],
     searchBooks: [],
+    noResults: true,
   };
 
   onShelfChange = (book, shelf) => {
@@ -27,15 +28,22 @@ class BooksApp extends React.Component {
         console.log(books);
         if (books.error) {
           this.setState({ searchBooks: [] });
+          this.setState({ noResults: true });
         } else {
           this.setState({ searchBooks: books });
+          this.setState({ noResults: false });
         }
       });
     } else {
       this.setState({ searchBooks: [] });
+      this.setState({ noResults: true });
     }
   };
 
+  clearSearchBooks = () => {
+    this.setState({ searchBooks: [] });
+    this.setState({ noResults: true });
+  };
   componentDidMount() {
     getAll().then((data) => {
       this.setState({ allBooks: data });
@@ -62,8 +70,10 @@ class BooksApp extends React.Component {
             <SearchBooks
               mybooks={this.state.allBooks}
               books={this.state.searchBooks}
+              noResults={this.state.noResults}
               onSearch={this.onSearch}
               onShelfChange={this.onShelfChange}
+              clearBooksData={this.clearSearchBooks}
             />
           </Route>
         </Switch>

@@ -11,7 +11,13 @@ class SearchBooks extends Component {
     this.props.onSearch(event.target.value);
   };
   render() {
-    const { books, mybooks, onShelfChange } = this.props;
+    const {
+      books,
+      mybooks,
+      noResults,
+      onShelfChange,
+      clearSearchBooks,
+    } = this.props;
     console.log(books);
 
     const shelfUpdated = books.map((book) => {
@@ -28,7 +34,9 @@ class SearchBooks extends Component {
       <div className="search-books">
         <div className="search-books-bar">
           <Link to="/">
-            <button className="close-search">Close</button>
+            <button className="close-search" onClick={clearSearchBooks}>
+              Close
+            </button>
           </Link>
           <div className="search-books-input-wrapper">
             <input
@@ -41,18 +49,22 @@ class SearchBooks extends Component {
         </div>
         <div className="search-books-results">
           <div className="bookshelf-books">
-            <ol className="books-grid">
-              {shelfUpdated.map((book) => {
-                return (
-                  <BookList
-                    key={book.id}
-                    book={book}
-                    shelf={book.shelf ? book.shelf : "none"}
-                    onShelfChange={onShelfChange}
-                  />
-                );
-              })}
-            </ol>
+            {noResults ? (
+              <div className="no-results">No Results</div>
+            ) : (
+              <ol className="books-grid">
+                {shelfUpdated.map((book) => {
+                  return (
+                    <BookList
+                      key={book.id}
+                      book={book}
+                      shelf={book.shelf ? book.shelf : "none"}
+                      onShelfChange={onShelfChange}
+                    />
+                  );
+                })}
+              </ol>
+            )}
           </div>
         </div>
       </div>
