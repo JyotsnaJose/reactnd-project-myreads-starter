@@ -22,10 +22,10 @@ class BooksApp extends React.Component {
     });
     this.setState({ allBooks: updatedBooks });
   };
+
   onSearch = (query) => {
     if (query.length > 0) {
       search(query).then((books) => {
-        console.log(books);
         if (books.error) {
           this.setState({ searchBooks: [] });
           this.setState({ noResults: true });
@@ -44,6 +44,7 @@ class BooksApp extends React.Component {
     this.setState({ searchBooks: [] });
     this.setState({ noResults: true });
   };
+
   componentDidMount() {
     getAll().then((data) => {
       this.setState({ allBooks: data });

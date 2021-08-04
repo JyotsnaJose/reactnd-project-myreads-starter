@@ -4,10 +4,12 @@ class ShelfChanger extends Component {
   state = {
     shelf: this.props.shelf,
   };
+
   changeShelf = (event) => {
     this.setState({ shelf: event.target.value });
     this.props.onShelfChange(this.props.book, event.target.value);
   };
+
   render() {
     return (
       <div className="book-shelf-changer">

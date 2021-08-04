@@ -6,10 +6,12 @@ class SearchBooks extends Component {
   state = {
     searchInput: "",
   };
+
   handleChange = (event) => {
     this.setState({ searchInput: event.target.value });
     this.props.onSearch(event.target.value);
   };
+
   render() {
     const {
       books,
@@ -18,7 +20,6 @@ class SearchBooks extends Component {
       onShelfChange,
       clearSearchBooks,
     } = this.props;
-    console.log(books);
 
     const shelfUpdated = books.map((book) => {
       mybooks.map((mybook) => {
@@ -29,7 +30,7 @@ class SearchBooks extends Component {
       });
       return book;
     });
-    console.log(shelfUpdated);
+
     return (
       <div className="search-books">
         <div className="search-books-bar">
