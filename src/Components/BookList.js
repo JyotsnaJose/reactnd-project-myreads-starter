@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ShelfChanger from "./ShelfChanger";
+import PropTypes from "prop-types";
 
 class BookList extends Component {
   render() {
@@ -33,5 +34,11 @@ class BookList extends Component {
     );
   }
 }
+
+BookList.propTypes = {
+  shelf: PropTypes.array,
+  book: PropTypes.array,
+  onShelfChange: PropTypes.func,
+};
 
 export default BookList;

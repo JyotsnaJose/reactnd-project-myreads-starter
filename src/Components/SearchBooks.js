@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import BookList from "./BookList";
+import PropTypes from "prop-types";
 
 class SearchBooks extends Component {
   state = {
@@ -72,5 +73,13 @@ class SearchBooks extends Component {
     );
   }
 }
+
+SearchBooks.propTypes = {
+  books: PropTypes.array,
+  mybooks: PropTypes.array,
+  noResults: PropTypes.bool,
+  onShelfChange: PropTypes.func,
+  clearSearchBooks: PropTypes.func,
+};
 
 export default SearchBooks;
